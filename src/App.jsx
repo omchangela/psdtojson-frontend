@@ -22,7 +22,8 @@ export default function App() {
     formData.append('psd', file);
 
     try {
-      const response = await fetch('http://localhost:5000/upload', {
+      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+      const response = await fetch(`${BACKEND_URL}/upload`, {
         method: 'POST',
         body: formData
       });
@@ -89,7 +90,7 @@ export default function App() {
 
       // Fetch font files
       try {
-        const fontResponse = await fetch('http://localhost:5000/fonts', {
+        const fontResponse = await fetch(`${BACKEND_URL}/fonts`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ fonts })
